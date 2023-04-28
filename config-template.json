@@ -11,11 +11,11 @@
     "@bot"
   ],
   "group_name_white_list": [
-    "ChatGPT测试群",
-    "ChatGPT测试群2"
+    "ChatGPT群",
+    "ChatGPT群2"
   ],
   "group_chat_in_one_session": [
-    "ChatGPT测试群"
+    "ChatGPT群"
   ],
   "image_create_prefix": [
     "画",
