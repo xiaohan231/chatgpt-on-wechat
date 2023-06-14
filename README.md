@@ -32,6 +32,8 @@ Demo made by [Visionn](https://www.wangpc.cc/)
 
 # 更新日志
 
+>**2023.06.12：** 接入 [LinkAI](https://chat.link-ai.tech/console) 平台，可在线创建 个人知识库，并接入微信中。Beta版本欢迎体验，使用参考 [接入文档](https://link-ai.tech/platform/link-app/wechat)。
+
 >**2023.04.26：** 支持企业微信应用号部署，兼容插件，并支持语音图片交互，私人助理理想选择，[使用文档](https://github.com/zhayujie/chatgpt-on-wechat/blob/master/channel/wechatcom/README.md)。(contributed by [@lanvent](https://github.com/lanvent) in [#944](https://github.com/zhayujie/chatgpt-on-wechat/pull/944))
 
 >**2023.04.05：** 支持微信公众号部署，兼容插件，并支持语音图片交互，[使用文档](https://github.com/zhayujie/chatgpt-on-wechat/blob/master/channel/wechatmp/README.md)。(contributed by [@JS00000](https://github.com/JS00000) in [#686](https://github.com/zhayujie/chatgpt-on-wechat/pull/686))
@@ -151,11 +153,11 @@ pip3 install azure-cognitiveservices-speech
 
 **4.其他配置**
 
-+ `model`: 模型名称，目前支持 `gpt-3.5-turbo`, `text-davinci-003`, `gpt-4`, `gpt-4-32k`  (其中gpt-4 api暂未开放)
++ `model`: 模型名称，目前支持 `gpt-3.5-turbo`, `text-davinci-003`, `gpt-4`, `gpt-4-32k`  (其中gpt-4 api暂未完全开放，申请通过后可使用)
 + `temperature`,`frequency_penalty`,`presence_penalty`: Chat API接口参数，详情参考[OpenAI官方文档。](https://platform.openai.com/docs/api-reference/chat)
 + `proxy`：由于目前 `openai` 接口国内无法访问，需配置代理客户端的地址，详情参考  [#351](https://github.com/zhayujie/chatgpt-on-wechat/issues/351)
 + 对于图像生成，在满足个人或群组触发条件外，还需要额外的关键词前缀来触发，对应配置 `image_create_prefix `
-+ 关于OpenAI对话及图片接口的参数配置（内容自由度、回复字数限制、图片大小等），可以参考 [对话接口](https://beta.openai.com/docs/api-reference/completions) 和 [图像接口](https://beta.openai.com/docs/api-reference/completions)  文档直接在 [代码](https://github.com/zhayujie/chatgpt-on-wechat/blob/master/bot/openai/open_ai_bot.py) `bot/openai/open_ai_bot.py` 中进行调整。
++ 关于OpenAI对话及图片接口的参数配置（内容自由度、回复字数限制、图片大小等），可以参考 [对话接口](https://beta.openai.com/docs/api-reference/completions) 和 [图像接口](https://beta.openai.com/docs/api-reference/completions)  文档，在[`config.py`](https://github.com/zhayujie/chatgpt-on-wechat/blob/master/config.py)中检查哪些参数在本项目中是可配置的。
 + `conversation_max_tokens`：表示能够记忆的上下文最大字数（一问一答为一组对话，如果累积的对话字数超出限制，就会优先移除最早的一组对话）
 + `rate_limit_chatgpt`，`rate_limit_dalle`：每分钟最高问答速率、画图速率，超速后排队按序处理。
 + `clear_memory_commands`: 对话内指令，主动清空前文记忆，字符串数组可自定义指令别名。
@@ -163,7 +165,7 @@ pip3 install azure-cognitiveservices-speech
 + `character_desc` 配置中保存着你对机器人说的一段话，他会记住这段话并作为他的设定，你可以为他定制任何人格      (关于会话上下文的更多内容参考该 [issue](https://github.com/zhayujie/chatgpt-on-wechat/issues/43))
 + `subscribe_msg`：订阅消息，公众号和企业微信channel中请填写，当被订阅时会自动回复， 可使用特殊占位符。目前支持的占位符有{trigger_prefix}，在程序中它会自动替换成bot的触发词。
 
-**所有可选的配置项均在该[文件](https://github.com/zhayujie/chatgpt-on-wechat/blob/master/config.py)中列出。**
+**本说明文档可能会未及时更新，当前所有可选的配置项均在该[`config.py`](https://github.com/zhayujie/chatgpt-on-wechat/blob/master/config.py)中列出。**
 
 ## 运行
 
@@ -206,6 +208,7 @@ nohup python3 app.py & tail -f nohup.out          # 在后台运行程序并通�
 
 FAQs： <https://github.com/zhayujie/chatgpt-on-wechat/wiki/FAQs>
 
+或直接在线咨询 [项目小助手](https://chat.link-ai.tech/app/Kv2fXJcH)  (beta版本，语料完善中，回复仅供参考)
 
 ## 联系
 
